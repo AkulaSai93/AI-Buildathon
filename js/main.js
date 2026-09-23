@@ -224,7 +224,7 @@ function setupNavToggle() {
    the active scroll line, then fades back to gray as it passes. */
 
 function setupAboutReveal() {
-  const copy = document.getElementById('aboutCopy');
+  const copy = document.getElementById('aboutRevealText');
   if (!copy) return;
 
   const DIM = [82, 82, 82]; // neutral gray, no purple tint

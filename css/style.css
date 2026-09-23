@@ -695,31 +695,86 @@ svg {
 }
 
 .about-inner {
-  max-width: 920px;
-  text-align: center;
+  max-width: 1280px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  align-items: center;
+  gap: 24px;
+}
+
+.about-text {
+  text-align: left;
 }
 
 .about-kicker {
   display: inline-block;
   font-family: var(--font-mono);
+  font-weight: 700;
   font-size: 0.75rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--text-dimmer);
-  margin-bottom: 32px;
+  color: var(--red);
+  margin-bottom: 20px;
 }
 
 .about-copy {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.5rem, 4vw, 2.6rem);
-  line-height: 1.55;
-  letter-spacing: -0.01em;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+}
+
+.about-lead {
+  color: var(--text);
 }
 
 .reveal-word {
   display: inline-block;
   color: rgb(82, 82, 82);
+}
+
+.about-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.about-ribbon svg {
+  width: 100%;
+  height: auto;
+  max-width: 620px;
+  overflow: visible;
+}
+
+.about-ribbon-text {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 7.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  fill: #0a0a0a;
+}
+
+@media (max-width: 900px) {
+  .about-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .about-ribbon {
+    order: -1;
+    margin-bottom: 16px;
+  }
+
+  .about-ribbon svg {
+    max-width: 340px;
+  }
+
+  .about-text {
+    text-align: center;
+  }
 }
 
 /* ---------------- Process (register -> finals steps) ---------------- */

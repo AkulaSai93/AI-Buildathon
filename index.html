@@ -148,8 +148,35 @@
 
     <section class="about" id="about">
       <div class="about-inner">
-        <span class="about-kicker">Why AI Buildathon</span>
-        <p class="about-copy" id="aboutCopy">AI Buildathon brings together builders, hackers, and dreamers for 48 hours of non&#8209;stop creation. No fluff, no lectures &mdash; just real teams shipping real products with the best AI tools on the planet. Whether you&rsquo;re debugging your first API call or fine&#8209;tuning your fifth model, this is where ideas become demos, and demos become companies.</p>
+        <div class="about-text">
+          <span class="about-kicker">Why AI Buildathon</span>
+          <p class="about-copy" id="aboutCopy"><span class="about-lead">AI Buildathon brings together</span> <span id="aboutRevealText">builders, hackers, and dreamers for 48 hours of non&#8209;stop creation. No fluff, no lectures &mdash; just real teams shipping real products with the best AI tools on the planet. Whether you&rsquo;re debugging your first API call or fine&#8209;tuning your fifth model, this is where ideas become demos, and demos become companies.</span></p>
+        </div>
+
+        <div class="about-ribbon" aria-hidden="true">
+          <svg viewBox="0 0 620 520" xmlns="http://www.w3.org/2000/svg">
+            <path
+              id="ribbonPath"
+              d="M 170 480
+                 C 230 440, 255 375, 325 335
+                 C 395 295, 415 215, 495 180
+                 C 555 154, 608 190, 590 250
+                 C 576 296, 522 310, 474 286
+                 C 436 267, 432 224, 470 212
+                 C 552 256, 640 258, 740 250"
+              fill="none"
+              stroke="#f4f4ff"
+              stroke-width="15"
+              stroke-linecap="round"
+            />
+            <text class="about-ribbon-text">
+              <textPath href="#ribbonPath" startOffset="0%">
+                BEYOND THE CLASSROOM &#8226; BEYOND THE CLASSROOM &#8226; BEYOND THE CLASSROOM &#8226; BEYOND THE CLASSROOM &#8226; BEYOND THE CLASSROOM &#8226;
+                <animate attributeName="startOffset" from="0%" to="-100%" dur="26s" repeatCount="indefinite" />
+              </textPath>
+            </text>
+          </svg>
+        </div>
       </div>
     </section>
 
