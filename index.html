@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Buildathon 2026 — 48-Hour National AI Hackathon</title>
+<meta name="description" content="Build what's next with AI. A 48-hour national hackathon for builders, hackers and AI engineers." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Anton&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <canvas id="particle-canvas"></canvas>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="navbar">
+      <a class="logo" href="#hero">
+        <span class="logo-bracket">&lt;</span>AI<span class="logo-accent">/</span>Buildathon<span class="logo-bracket">&gt;</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#tracks">Tracks</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#prizes">Prizes</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <a class="btn btn-nav" href="#register">
+        Register
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="flare flare--orange" aria-hidden="true"></div>
+      <div class="flare flare--blue" aria-hidden="true"></div>
+      <div class="orb orb--blue" aria-hidden="true"></div>
+      <div class="orb orb--orange" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--violet" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--cyan" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+
+        <div class="terminal-line" id="terminalLine">
+          <span class="terminal-prompt">➜</span>
+          <span class="terminal-text" id="terminalText"></span><span class="cursor">▌</span>
+        </div>
+
+        <div class="hero-lockup" data-reveal>
+          <span class="lockup-brand">AI<span class="lockup-x">&times;</span>Buildathon</span>
+          <span class="lockup-divider"></span>
+          <span class="lockup-tag">PRESENTS</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line-mask"><span class="line" data-reveal>BUILD WHAT'S</span></span>
+          <span class="line-mask"><span class="line line-gradient" data-reveal>NEXT WITH AI</span></span>
+          <span class="ribbon-banner" data-reveal>Registrations Now Open</span>
+        </h1>
+
+        <p class="hero-subtitle" data-reveal>
+          Ship an idea from zero to demo in 48 hours. Team up with builders, get mentored by
+          engineers from top AI labs, and compete for <strong>&#8377;10,00,000</strong> in prizes.
+        </p>
+
+        <div class="reg-period" data-reveal>
+          <span class="reg-period-label">Registration Period</span>
+          <span class="reg-period-dates">23 Sep &ndash; 15 Nov 2026</span>
+        </div>
+
+        <div class="hero-cta" data-reveal>
+          <a href="#register" class="btn btn-primary">
+            <span>Register for Free</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#about" class="btn btn-text">
+            <span>Explore the Olympiad</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="partners" aria-label="Powered by leading AI platforms">
+      <div class="partners-track">
+        <div class="partners-group">
+          <span class="partner-item">OpenAI</span>
+          <span class="partner-sep">&#10022;</span>
+          <span class="partner-item partner-item--accent">Anthropic</span>
+          <span class="partner-sep">&#10022;</span>
+          <span class="partner-item">Gemini</span>
+          <span class="partner-sep">&#10022;</span>
+          <span class="partner-item partner-item--accent">Replit</span>
+          <span class="partner-sep">&#10022;</span>
+          <span class="partner-item">Lovable</span>
+          <span class="partner-sep">&#10022;</span>
+          <span class="partner-item partner-item--accent">Emergent</span>
+          <span class="partner-sep">&#10022;</span>
+        </div>
+        <div class="partners-group" aria-hidden="true">
+          <span class="partner-item">OpenAI</span>
+          <span class="partner-sep">&#10022;</span>
+          <span class="partner-item partner-item--accent">Anthropic</span>
+          <span class="partner-sep">&#10022;</span>
+          <span class="partner-item">Gemini</span>
+          <span class="partner-sep">&#10022;</span>
+          <span class="partner-item partner-item--accent">Replit</span>
+          <span class="partner-sep">&#10022;</span>
+          <span class="partner-item">Lovable</span>
+          <span class="partner-sep">&#10022;</span>
+          <span class="partner-item partner-item--accent">Emergent</span>
+          <span class="partner-sep">&#10022;</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
