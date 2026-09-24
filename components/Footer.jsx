@@ -1,7 +1,7 @@
 'use client';
 
-const imgImage2256 = '/assets/iaib-logo.png';
-const imgIaib = '/assets/iaib-logo.png';
+const imgImage2256 = '/assets/footer-logo.png';
+const imgIaib = '/assets/iaib-wordmark.svg';
 
 export default function Footer() {
   const navLinks = ['Home', 'About IAIB', 'How It Works', 'Prizes', 'Mentors', 'Jury', 'FAQ'];

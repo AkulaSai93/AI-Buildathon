@@ -1,6 +1,6 @@
 'use client';
 
-const imgJuror = '/assets/mentors-grid/vishwa.jpg';
+const imgJuror = '/assets/juror.jpg';
 
 const JURY = [
   { name: 'Vishwa Mohan', title: 'Founder & CEO, upGrad School of Technology', bg: '#cbd5d4', tall: true },
