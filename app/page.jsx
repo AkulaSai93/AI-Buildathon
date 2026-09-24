@@ -1,8 +1,8 @@
-import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import TesseractScroll from '@/components/TesseractScroll';
 import Partners from '@/components/Partners';
 import Advantage from '@/components/Advantage';
+import BuiltToChallenge from '@/components/BuiltToChallenge';
+import HowItWorks from '@/components/HowItWorks';
 import MentorsGrid from '@/components/MentorsGrid';
 import Mentors from '@/components/Mentors';
 import FAQ from '@/components/FAQ';
@@ -12,12 +12,12 @@ import SectionReveals from '@/components/SectionReveals';
 export default function Home() {
   return (
     <>
-      <Header />
       <main>
         <Hero />
-        <TesseractScroll />
         <Partners />
         <Advantage />
+        <BuiltToChallenge />
+        <HowItWorks />
         <MentorsGrid />
         <Mentors />
         <FAQ />

@@ -8,9 +8,8 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* scroll-behavior: smooth is intentionally omitted — Lenis (SmoothScroll)
+   handles all scroll easing, and the two fight each other if both are active. */
 
 body {
   background: #000000;

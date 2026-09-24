@@ -1,4 +1,5 @@
 import { Space_Grotesk, JetBrains_Mono, Bricolage_Grotesque, Anton } from 'next/font/google';
+import SmoothScroll from '@/components/SmoothScroll';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -37,7 +38,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${bricolage.variable} ${anton.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }

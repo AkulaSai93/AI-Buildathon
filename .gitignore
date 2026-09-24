@@ -1,0 +1,18 @@
+# dependencies
+/node_modules
+
+# next.js build output
+/.next/
+/out/
+
+# misc
+.DS_Store
+*.pem
+
+# raw source assets (large frame-sequence dumps, not needed in the repo —
+# only the compressed/optimized versions in public/assets are used by the app)
+Create_cinematic_hero_animation_*_frames*/
+Camera_falling_*_frames*/
+
+# env files
+.env*.local
