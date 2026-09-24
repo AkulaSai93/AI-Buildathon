@@ -4,7 +4,7 @@ const MENTORS = [
   {
     name: 'Vishwa Mohan',
     title: 'Founder & CEO · uGSOT',
-    image: 'http://localhost:3845/assets/733c65dc870c10b0ffd992bae0c72a9f1e170696.png',
+    image: '/assets/mentors-grid/vishwa.jpg',
     icons: [
       { src: '/assets/mentor-icons/vishwa-1.png', w: 12 },
       { src: '/assets/mentor-icons/vishwa-2.png', w: 27 },
@@ -14,13 +14,13 @@ const MENTORS = [
   {
     name: 'Divyansh Dubey',
     title: 'Gen AI · Google',
-    image: 'http://localhost:3845/assets/2add64731052f5b12fb1c4195829482450c34466.png',
+    image: '/assets/mentors-grid/divyansh.jpg',
     icons: [{ src: '/assets/mentor-icons/divyansh-1.png', w: 35 }],
   },
   {
     name: 'Sourov Roy',
     title: 'Software Engineer II · Deliveroo',
-    image: 'http://localhost:3845/assets/b4e367bc30cba94d0d8738a4781cff6901c4cde9.png',
+    image: '/assets/mentors-grid/sourov.jpg',
     icons: [
       { src: '/assets/mentor-icons/sourov-1.png', w: 40 },
       { src: '/assets/mentor-icons/sourov-2.png', w: 12 },
@@ -30,7 +30,7 @@ const MENTORS = [
   {
     name: 'Gladden Rumao',
     title: 'Ex-Barclays · Newton School',
-    image: 'http://localhost:3845/assets/2db967d7145576ce61f0103365f96c2b876436b5.png',
+    image: '/assets/mentors-grid/gladden.jpg',
     icons: [
       { src: '/assets/mentor-icons/gladden-1.png', w: 12 },
       { src: '/assets/mentor-icons/gladden-2.png', w: 12 },
@@ -39,25 +39,25 @@ const MENTORS = [
   {
     name: 'Richa Arora',
     title: 'Full Stack Trainer · MERN',
-    image: 'http://localhost:3845/assets/d3b2f3ce9534ab5b83d6839cbf0a671bf3c264d4.png',
+    image: '/assets/mentors-grid/richa.jpg',
     icons: [],
   },
   {
     name: 'Vivek Kumar Astikar',
     title: 'Data/AI Engineer · Google & Microsoft Certified',
-    image: 'http://localhost:3845/assets/df27217017553d69d7dc87461c6e4ac9c9fe2dd5.png',
+    image: '/assets/mentors-grid/vivek.jpg',
     icons: [],
   },
   {
     name: 'Shubham Lal',
     title: 'Software Developer · Microsoft',
-    image: 'http://localhost:3845/assets/56311859778351a3275e7bdabaa388c8816d4ca6.png',
+    image: '/assets/mentors-grid/shubham.jpg',
     icons: [{ src: '/assets/mentor-icons/shubham-1.png', w: 40 }],
   },
   {
     name: 'Ganesh Balakrishnan',
     title: 'Fractional CMO · Shark Tank',
-    image: 'http://localhost:3845/assets/cac97b52af7da6878c5584fbda6de9659d9e4f97.png',
+    image: '/assets/mentors-grid/ganesh.jpg',
     icons: [
       { src: '/assets/mentor-icons/ganesh-1.png', w: 30 },
       { src: '/assets/mentor-icons/ganesh-2.png', w: 27 },

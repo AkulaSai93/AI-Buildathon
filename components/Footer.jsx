@@ -1,8 +1,7 @@
 'use client';
 
-const imgImage2256 = 'http://localhost:3845/assets/790e9258246e97e6d7ba110556b5645b806729f6.png';
-const imgIaib = 'http://localhost:3845/assets/063840c3f601fbc700556804836fcad30149e1d3.svg';
-const imgLine6 = 'http://localhost:3845/assets/a0ace4ceefd2d3501d46c37516218c8741d6c081.svg';
+const imgImage2256 = '/assets/iaib-logo.png';
+const imgIaib = '/assets/iaib-logo.png';
 
 export default function Footer() {
   const navLinks = ['Home', 'About IAIB', 'How It Works', 'Prizes', 'Mentors', 'Jury', 'FAQ'];
