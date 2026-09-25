@@ -182,16 +182,10 @@ export default function Hero() {
           <span className="font-mono text-[13.6px] max-[720px]:text-[10px] text-cyan animate-blink">▌</span>
         </div>
 
-        <div className="bg-white flex items-center gap-[14px] px-[10px] py-[4px]">
-          <img src="/assets/iaib-logo.png" alt="IAIB" className="h-[20px] w-[60.317px] object-contain" />
-          <div className="w-px h-[16px] bg-black" />
-          <span className="font-mono text-[10.88px] tracking-[2.6112px] text-black">PRESENTS</span>
-        </div>
-
         <div className="flex flex-col gap-[16px] items-center w-full">
           <div className="flex flex-col gap-[14px] items-center w-[695px] max-w-full">
             <h1 className="font-poster text-[128px] max-[900px]:text-[13.5vw] leading-[120.32px] max-[900px]:leading-[1.05] tracking-[0.64px] uppercase text-white w-full whitespace-nowrap">
-              IAIB Ignite
+              I<span className="text-red">AI</span>B Ignite
             </h1>
             <h1
               className="font-poster text-[128px] max-[900px]:text-[13.5vw] leading-[120.32px] max-[900px]:leading-[1.05] tracking-[0.64px] uppercase w-full whitespace-nowrap bg-clip-text text-transparent bg-gradient-text animate-gradient-shift"
