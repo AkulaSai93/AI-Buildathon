@@ -68,7 +68,7 @@ const MENTORS = [
 
 export default function MentorsGrid() {
   return (
-    <section className="relative bg-[#010101] px-6 max-[860px]:px-5 py-20">
+    <section id="mentors" className="relative bg-[#010101] px-6 max-[860px]:px-5 py-20">
       <div className="mx-auto flex flex-col gap-[60px] items-center max-w-[1352px]">
         <div className="flex flex-col gap-[21px] items-center text-center w-full">
           <h2 className="font-display text-[63px] font-bold uppercase leading-none text-text">

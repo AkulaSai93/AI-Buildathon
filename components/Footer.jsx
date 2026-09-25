@@ -3,21 +3,42 @@
 const imgLockup = '/assets/footer-lockup.png';
 const imgIaib = '/assets/iaib-wordmark.svg';
 
+const NAV_LINKS = [
+  { label: 'Home', target: 'home' },
+  { label: 'Why IAIB?', target: 'why-iaib' },
+  { label: 'How does it work?', target: 'how-it-works' },
+  { label: 'Mentors', target: 'mentors' },
+  { label: 'Jury', target: 'jury' },
+  { label: 'FAQ', target: 'faq' },
+];
+
 export default function Footer() {
-  const navLinks = ['Home', 'Why IAIB?', 'How does it work?', 'Mentors', 'Jury', 'FAQ'];
+  // Lenis drives the scroll position, so a native anchor jump would fight it
+  // and land in the wrong place — hand the target to Lenis instead.
+  const scrollTo = (event, id) => {
+    event.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (window.lenis) {
+      window.lenis.scrollTo(el);
+    } else {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <footer className="relative bg-[#fcfcfa]">
       <div className="relative w-full h-[720px]">
         {/* Top Navigation Links */}
         <div className="absolute left-[80px] top-[64px] flex gap-[24px] items-center whitespace-nowrap">
-          {navLinks.map((link) => (
+          {NAV_LINKS.map((link) => (
             <a
-              key={link}
-              href="#"
+              key={link.target}
+              href={`#${link.target}`}
+              onClick={(e) => scrollTo(e, link.target)}
               className="font-display font-normal text-[14px] text-[#202020] leading-normal hover:text-red transition-colors"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>

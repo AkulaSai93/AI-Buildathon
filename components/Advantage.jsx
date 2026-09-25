@@ -85,7 +85,7 @@ export default function Advantage() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-[#fafafa] h-[300vh]">
+    <section id="why-iaib" ref={sectionRef} className="relative bg-[#fafafa] h-[300vh]">
       <div className="sticky top-0 h-screen flex flex-col overflow-hidden px-[80px] max-[860px]:px-5">
         <div className="mx-auto w-[1003px] max-w-full pt-[60px] flex flex-col gap-[20px] items-center text-center text-[#111]">
           <h2 className="font-body text-[56px] max-[860px]:text-[2.2rem] font-semibold uppercase leading-normal">

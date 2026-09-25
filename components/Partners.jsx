@@ -17,27 +17,29 @@ export default function Partners() {
           Built with the best in AI
         </p>
 
-        <div className="flex w-fit animate-partners-scroll">
-          {/* The animation shifts the track by -50%, so at peak shift only
-              half the track is left covering the screen. With one run being
-              ~1025px, anything past 8 runs' half-width (~4100px) would show a
-              gap — 8 keeps it seamless through ultrawide displays. An even
-              count is required for the -50% loop to land on an identical run. */}
-          {Array.from({ length: 8 }, (_, run) => (
-            <div key={run} className="flex items-center flex-shrink-0">
-              {PARTNERS.map((partner) => (
-                <div key={partner.name} className="flex items-center">
-                  <div className="flex gap-[12px] items-center opacity-85 px-[28px]">
-                    <img src={partner.logo} alt="" className="w-[24px] h-[24px] shrink-0" />
-                    <span className="font-display font-semibold text-[18.4px] tracking-[-0.184px] text-white whitespace-nowrap">
-                      {partner.name}
-                    </span>
+        {/* Full-width wrapper so the centred parent doesn't offset the track.
+            Centred, the -50% shift would always strand the right edge at half
+            the viewport. Anchored at x=0, half the track (~4100px across 8
+            runs) always covers the screen. The run count must stay even so the
+            -50% loop lands on an identical run. */}
+        <div className="w-full overflow-hidden">
+          <div className="flex w-max animate-partners-scroll">
+            {Array.from({ length: 8 }, (_, run) => (
+              <div key={run} className="flex items-center flex-shrink-0">
+                {PARTNERS.map((partner) => (
+                  <div key={partner.name} className="flex items-center">
+                    <div className="flex gap-[12px] items-center opacity-85 px-[28px]">
+                      <img src={partner.logo} alt="" className="w-[24px] h-[24px] shrink-0" />
+                      <span className="font-display font-semibold text-[18.4px] tracking-[-0.184px] text-white whitespace-nowrap">
+                        {partner.name}
+                      </span>
+                    </div>
+                    <span className="font-body text-[11.2px] text-red leading-normal">✦</span>
                   </div>
-                  <span className="font-body text-[11.2px] text-red leading-normal">✦</span>
-                </div>
-              ))}
-            </div>
-          ))}
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -162,7 +162,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[350vh] max-[860px]:h-auto bg-[#010101]">
+    <section id="home" ref={sectionRef} className="relative h-[350vh] max-[860px]:h-auto bg-[#010101]">
       <div className="sticky top-0 h-screen max-[860px]:h-auto max-[860px]:pb-16 overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0">
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />

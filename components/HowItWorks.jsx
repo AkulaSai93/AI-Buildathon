@@ -141,7 +141,7 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[500vh] bg-black">
+    <section id="how-it-works" ref={sectionRef} className="relative h-[500vh] bg-black">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
         {/* Continuously looping background video — a stable backdrop, not the
             thing driving the scroll animation. */}

@@ -11,7 +11,7 @@ const JURY = [
 
 export default function Mentors() {
   return (
-    <section className="relative bg-[#fafafa] pt-20">
+    <section id="jury" className="relative bg-[#fafafa] pt-20">
       <div className="flex flex-col gap-[60px] items-center w-full">
         <div className="flex flex-col gap-[21px] items-center text-center w-full px-6 max-[860px]:px-5">
           <h2 className="font-display text-[63px] font-bold uppercase leading-none text-[#111]">

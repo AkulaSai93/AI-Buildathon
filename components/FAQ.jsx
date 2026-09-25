@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const FAQ_ITEMS = [
   {
@@ -78,15 +78,34 @@ const PREVIEW_COUNT = 6;
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
   const [showAll, setShowAll] = useState(false);
+  const panelRefs = useRef([]);
+  const answerRefs = useRef([]);
 
   const visible = showAll ? FAQ_ITEMS : FAQ_ITEMS.slice(0, PREVIEW_COUNT);
+
+  // Height is applied from the answer's measured size rather than a CSS
+  // keyword, because `height: auto` and `grid-template-rows: 0fr->1fr` are
+  // both non-interpolable here, which is what made the panel snap open.
+  useEffect(() => {
+    const sync = () => {
+      panelRefs.current.forEach((panel, i) => {
+        if (!panel) return;
+        const answer = answerRefs.current[i];
+        panel.style.height = openIndex === i && answer ? `${answer.offsetHeight}px` : '0px';
+      });
+    };
+
+    sync();
+    window.addEventListener('resize', sync);
+    return () => window.removeEventListener('resize', sync);
+  }, [openIndex, showAll]);
 
   const toggleItem = (index) => {
     setOpenIndex((current) => (current === index ? null : index));
   };
 
   return (
-    <section className="relative bg-[#fafafa] px-6 max-[860px]:px-5 pt-10 pb-20 overflow-hidden">
+    <section id="faq" className="relative bg-[#fafafa] px-6 max-[860px]:px-5 pt-10 pb-20 overflow-hidden">
       <div className="mx-auto flex flex-col items-center gap-[54px] max-w-[964px] relative z-10">
         {/* Heading and Subtitle */}
         <div className="flex flex-col gap-[20px] items-center text-center w-full">
@@ -105,32 +124,41 @@ export default function FAQ() {
             return (
               <div
                 key={item.question}
-                className={`flex items-start px-[32px] py-[24px] w-full cursor-pointer transition-colors ${
+                className={`flex items-start px-[32px] py-[24px] w-full cursor-pointer transition-colors duration-300 ease-out ${
                   isExpanded ? 'bg-red' : 'bg-white'
                 }`}
                 onClick={() => toggleItem(index)}
               >
                 <div className="flex flex-1 items-start justify-between min-w-0">
-                  <div className="flex flex-col gap-[12px] items-start leading-normal flex-1 pr-4">
+                  <div className="flex flex-col items-start leading-normal flex-1 pr-4">
                     <p
-                      className={`font-display font-medium text-[24px] max-[640px]:text-[19px] leading-normal ${
+                      className={`font-display font-medium text-[24px] max-[640px]:text-[19px] leading-normal transition-colors ${
                         isExpanded ? 'text-white' : 'text-[#0a0a0b]'
                       }`}
                     >
                       {item.question}
                     </p>
-                    {isExpanded && (
-                      <p className="font-display font-normal text-[20px] max-[640px]:text-[16px] leading-normal text-[rgba(255,255,255,0.8)]">
+                    {/* Stays mounted so it can transition; the effect above
+                        drives its height off the measured answer. */}
+                    <div
+                      ref={(el) => (panelRefs.current[index] = el)}
+                      className="w-full overflow-hidden transition-[height,opacity] duration-300 ease-out"
+                      style={{ opacity: isExpanded ? 1 : 0 }}
+                    >
+                      <p
+                        ref={(el) => (answerRefs.current[index] = el)}
+                        className="font-display font-normal text-[20px] max-[640px]:text-[16px] leading-normal text-[rgba(255,255,255,0.8)] pt-[12px]"
+                      >
                         {item.answer}
                       </p>
-                    )}
+                    </div>
                   </div>
 
                   {/* Chevron Icon */}
                   <div
                     className={`flex-shrink-0 flex items-center justify-center w-[32px] h-[32px] border-[0.615px] rounded ${
                       isExpanded ? 'border-white' : 'border-[#0a0a0b]'
-                    } transition-transform`}
+                    } transition-all duration-300 ease-out`}
                     style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
                   >
                     <svg
