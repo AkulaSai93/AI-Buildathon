@@ -3,9 +3,9 @@
 import { useEffect, useRef } from 'react';
 
 const STEPS = [
-  { image: '/assets/journey-cards/step-01-learn.webp', alt: '01 — Learning: 30 Days of Learning' },
-  { image: '/assets/journey-cards/step-02-screen.webp', alt: '02 — Screening: Test + Build' },
-  { image: '/assets/journey-cards/step-03-offline-buildathon.webp', alt: '03 — Offline Buildathon' },
+  { image: '/assets/journey-cards/step-01-learn.webp', alt: '01 — Learning: 30 Days of Learning', label: 'Learning' },
+  { image: '/assets/journey-cards/step-02-screen.webp', alt: '02 — Screening: Test + Build', label: 'Screening' },
+  { image: '/assets/journey-cards/step-03-offline-buildathon.webp', alt: '03 — Offline Buildathon', label: 'Offline Buildathon' },
 ];
 
 // Distance (in normalized scroll units) between each shard's foreground peak.
@@ -17,6 +17,7 @@ export default function HowItWorks() {
   const textRef = useRef(null);
   const sceneRef = useRef(null);
   const shardRefs = useRef([]);
+  const arrowRefs = useRef([]);
   const rafRef = useRef(null);
   const targetProgress = useRef(0);
   const currentProgress = useRef(0);
@@ -101,6 +102,16 @@ export default function HowItWorks() {
           `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) ` +
           `rotateY(${rotateY}deg) rotateX(${rotateX}deg) rotateZ(${rotateZ}deg) scale(${scale})`;
         el.style.pointerEvents = absNd < 0.35 ? 'auto' : 'none';
+
+        // The callout only belongs to the shard sitting at its peak, so it
+        // fades out as soon as that shard starts moving off centre.
+        const arrow = arrowRefs.current[i];
+        if (arrow) {
+          const focus = Math.max(0, 1 - absNd / 0.3);
+          arrow.style.opacity = String(focus);
+          // -158px lines the path's starting corner up with the shard's centre.
+          arrow.style.transform = `translateY(-158px) translateX(${(1 - focus) * -24}px)`;
+        }
       });
     };
 
@@ -195,6 +206,40 @@ export default function HowItWorks() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Dashed callout pointing out of the shard that's currently in focus.
+            Lives outside the preserve-3d scene so the camera tilt doesn't skew
+            it, and is hidden on narrow screens where there's no room beside
+            the shard. */}
+        <div className="absolute inset-0 z-[15] pointer-events-none max-[1100px]:hidden">
+          {STEPS.map((step, i) => (
+            <div
+              key={i}
+              ref={(el) => (arrowRefs.current[i] = el)}
+              className="absolute top-1/2 left-1/2 ml-[300px] opacity-0"
+            >
+              <svg width="290" height="170" viewBox="0 0 290 170" fill="none">
+                {/* Steps right, turns up, then right again into the head. */}
+                <path
+                  d="M2 158 H112 A16 16 0 0 0 128 142 V28 A16 16 0 0 1 144 12 H258"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeDasharray="10 9"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                <path
+                  d="M252 5 L268 12 L252 19"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
+                />
+              </svg>
+            </div>
+          ))}
         </div>
 
         {/* Feather the video into the black sections above and below, so the
