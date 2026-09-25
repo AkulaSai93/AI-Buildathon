@@ -55,7 +55,7 @@ module.exports = {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-50%)' },
         },
-        'faq-marquee': {
+        'headline-marquee': {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-50%)' },
         },
@@ -66,7 +66,7 @@ module.exports = {
         'partners-scroll': 'partners-scroll 26s linear infinite',
         'mentors-scroll': 'mentors-scroll 30s linear infinite',
         'mentors-grid-scroll': 'mentors-grid-scroll 40s linear infinite',
-        'faq-marquee': 'faq-marquee 40s linear infinite',
+        'headline-marquee': 'headline-marquee 40s linear infinite',
       },
       spacing: {
         'header-h': '84px',

@@ -48,22 +48,7 @@ export default function FAQ() {
 
   return (
     <section className="relative bg-[#fafafa] px-6 max-[860px]:px-5 py-20 overflow-hidden">
-      {/* Moving Marquee Stripe */}
-      <div className="absolute left-1/2 top-0 -translate-x-1/2 flex gap-[70px] items-center whitespace-nowrap overflow-hidden w-full h-[200px] z-0 pointer-events-none">
-        <div className="flex gap-[70px] animate-faq-marquee" style={{ width: 'fit-content' }}>
-          {['#0085C7', '#F4C300', '#009F3D', '#DF0024'].map((color, i) => (
-            <p
-              key={i}
-              className="font-display font-bold text-[120px] leading-none tracking-[-0.095em] flex-shrink-0"
-              style={{ color }}
-            >
-              Ignite AI Buildathon
-            </p>
-          ))}
-        </div>
-      </div>
-
-      <div className="mx-auto flex flex-col items-center gap-[54px] max-w-[964px] relative z-10 pt-[160px]">
+      <div className="mx-auto flex flex-col items-center gap-[54px] max-w-[964px] relative z-10">
         {/* Heading and Subtitle */}
         <div className="flex flex-col gap-[20px] items-center text-center w-full">
           <h2 className="font-display text-[40px] font-semibold leading-normal text-[#111]">
