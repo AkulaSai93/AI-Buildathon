@@ -171,55 +171,61 @@ export default function Hero() {
 
       <div
         ref={contentRef}
-        className="relative z-10 flex flex-col items-center gap-6 max-w-[735px] mx-auto px-6 text-center"
+        className="relative z-10 flex flex-col items-center gap-[24px] w-[837px] max-w-full px-6 mx-auto text-center"
         style={{ willChange: 'transform, opacity, filter' }}
       >
-        <div className="bg-[rgba(6,229,229,0.06)] border border-[rgba(6,229,229,0.25)] flex items-center gap-2 px-4 py-2">
-          <span className="font-mono font-semibold text-[13.6px] text-violet-soft">{'➜'}</span>
-          <span className="font-mono text-[13.6px] text-cyan">India&rsquo;s Largest AI Talent Discovery and Development Platform</span>
-          <span className="font-mono text-[13.6px] text-cyan animate-blink">▌</span>
+        <div className="bg-[rgba(6,229,229,0.06)] border border-[rgba(6,229,229,0.25)] flex items-center gap-[8px] min-h-[20px] px-[16px] py-[8px] max-[720px]:px-3 max-[720px]:py-2">
+          <span className="font-mono font-semibold text-[13.6px] max-[720px]:text-[10px] text-violet-soft">{'➜'}</span>
+          <span className="font-mono text-[13.6px] max-[720px]:text-[10px] text-cyan">
+            India&rsquo;s Largest AI Talent Discovery and Development Platform
+          </span>
+          <span className="font-mono text-[13.6px] max-[720px]:text-[10px] text-cyan animate-blink">▌</span>
         </div>
 
-        <div className="flex items-center gap-3.5">
-          <div className="bg-white px-3 py-1.5 flex items-center">
-            <img src="/assets/iaib-logo.png" alt="IAIB" className="h-[18px] w-auto object-contain" />
+        <div className="bg-white flex items-center gap-[14px] px-[10px] py-[4px]">
+          <img src="/assets/iaib-logo.png" alt="IAIB" className="h-[20px] w-[60.317px] object-contain" />
+          <div className="w-px h-[16px] bg-black" />
+          <span className="font-mono text-[10.88px] tracking-[2.6112px] text-black">PRESENTS</span>
+        </div>
+
+        <div className="flex flex-col gap-[16px] items-center w-full">
+          <div className="flex flex-col gap-[14px] items-center w-[695px] max-w-full">
+            <h1 className="font-poster text-[128px] max-[900px]:text-[13.5vw] leading-[120.32px] max-[900px]:leading-[1.05] tracking-[0.64px] uppercase text-white w-full whitespace-nowrap">
+              IAIB Ignite
+            </h1>
+            <h1
+              className="font-poster text-[128px] max-[900px]:text-[13.5vw] leading-[120.32px] max-[900px]:leading-[1.05] tracking-[0.64px] uppercase w-full whitespace-nowrap bg-clip-text text-transparent bg-gradient-text animate-gradient-shift"
+              style={{ backgroundSize: '300% 100%' }}
+            >
+              AI Buildathon
+            </h1>
           </div>
-          <div className="w-px h-4 bg-border" />
-          <span className="font-mono text-[10.88px] tracking-[2.6px] text-text-dimmer">PRESENTS</span>
+          <p className="font-body text-[20px] max-[720px]:text-[15px] leading-normal text-text-dim w-full">
+            IAIB stands to identify, nurture, and facilitate school students from classes 9th till 12th in learning about AI. They will get to learn AI, test their knowledge, and build solutions.
+          </p>
         </div>
 
-        <div className="relative flex flex-col items-center">
-          <h1 className="font-poster text-[128px] max-[860px]:text-[15vw] leading-[0.94] uppercase text-white text-center tracking-[0.64px]">
-            IAIB IGNITE
-          </h1>
-          <h1
-            className="font-poster text-[128px] max-[860px]:text-[15vw] leading-[0.94] uppercase text-center tracking-[0.64px] bg-clip-text text-transparent bg-gradient-text animate-gradient-shift"
-            style={{ backgroundSize: '300% 100%' }}
-          >
-            AI Buildathon
-          </h1>
+        <div className="flex flex-col gap-[6px] items-center">
+          <span className="font-mono font-medium text-[14px] tracking-[2.016px] uppercase text-text-dimmer">Starts</span>
+          <span className="font-display font-bold text-[18.4px] text-text px-[12px] py-[6px]">
+            October 10th, 2026 | Bengaluru
+          </span>
         </div>
 
-        <p className="font-body text-[19.2px] leading-[1.6] text-text-dim">
-          IAIB stands to identify, nurture, and facilitate school students from classes 9th till 12th in learning about AI. They will get to learn AI, test their knowledge, and build solutions.
-        </p>
-
-        <div className="flex flex-col items-center gap-1.5">
-          <span className="font-mono text-[11.2px] tracking-[2px] uppercase text-text-dimmer">Starts</span>
-          <span className="font-display font-bold text-[18.4px] text-text">October 10th, 2026 | Bengaluru</span>
-        </div>
-
-        <div className="flex items-center gap-5 max-[700px]:flex-col">
+        <div className="flex items-center gap-[20px] max-[560px]:flex-col max-[560px]:gap-3">
           <a
             href="#"
-            className="bg-red flex items-center gap-2 pl-3.5 pr-3 py-3 text-white font-body font-semibold text-[13.3px] hover:bg-[#ff1a28] transition-colors"
+            className="bg-red flex items-center justify-center gap-[8px] pl-[14px] pr-[12px] py-[12px] text-white font-body font-semibold text-[13.333px] leading-[19.048px] hover:bg-[#ff1a28] transition-colors"
           >
             Register Now
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0">
               <path d="M6 14L14 6M14 6H7M14 6V13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
-          <a href="#" className="px-5 py-3 text-white font-body font-semibold text-[13.3px] hover:opacity-80 transition-opacity">
+          <a
+            href="#"
+            className="px-[20px] py-[12px] text-white font-body font-semibold text-[13.333px] leading-[19.048px] hover:opacity-80 transition-opacity"
+          >
             Explore Buildathon
           </a>
         </div>
