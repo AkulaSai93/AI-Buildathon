@@ -13,7 +13,7 @@ export default function Partners() {
   return (
     <section className="relative z-10 bg-[#010101] py-[60px] max-[860px]:py-10 overflow-hidden no-scrollbar">
       <div className="flex flex-col gap-[24px] items-center">
-        <p className="font-mono font-medium text-[20px] max-[860px]:text-[14px] leading-normal uppercase text-text-dimmer text-center px-6">
+        <p className="font-mono font-medium text-[20px] max-[860px]:text-[14px] leading-normal uppercase text-white text-center px-6">
           Built with the best in AI
         </p>
 
@@ -29,11 +29,11 @@ export default function Partners() {
                 <div key={partner.name} className="flex items-center">
                   <div className="flex gap-[12px] items-center opacity-85 px-[28px]">
                     <img src={partner.logo} alt="" className="w-[24px] h-[24px] shrink-0" />
-                    <span className="font-display font-semibold text-[18.4px] tracking-[-0.184px] text-text-dim whitespace-nowrap">
+                    <span className="font-display font-semibold text-[18.4px] tracking-[-0.184px] text-white whitespace-nowrap">
                       {partner.name}
                     </span>
                   </div>
-                  <span className="font-body text-[11.2px] text-text-dimmer leading-normal">✦</span>
+                  <span className="font-body text-[11.2px] text-red leading-normal">✦</span>
                 </div>
               ))}
             </div>
