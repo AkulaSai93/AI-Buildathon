@@ -18,8 +18,12 @@ export default function Partners() {
         </p>
 
         <div className="flex w-fit animate-partners-scroll">
-          {/* Two identical runs so the -50% translate loops seamlessly. */}
-          {[0, 1].map((run) => (
+          {/* The animation shifts the track by -50%, so at peak shift only
+              half the track is left covering the screen. With one run being
+              ~1025px, anything past 8 runs' half-width (~4100px) would show a
+              gap — 8 keeps it seamless through ultrawide displays. An even
+              count is required for the -50% loop to land on an identical run. */}
+          {Array.from({ length: 8 }, (_, run) => (
             <div key={run} className="flex items-center flex-shrink-0">
               {PARTNERS.map((partner) => (
                 <div key={partner.name} className="flex items-center">
