@@ -176,7 +176,7 @@ export default function Hero() {
       >
         <div className="bg-[rgba(6,229,229,0.06)] border border-[rgba(6,229,229,0.25)] flex items-center gap-2 px-4 py-2">
           <span className="font-mono font-semibold text-[13.6px] text-violet-soft">{'➜'}</span>
-          <span className="font-mono text-[13.6px] text-cyan">initializing_buildathon.sh --mode=build --team=you</span>
+          <span className="font-mono text-[13.6px] text-cyan">India&rsquo;s Largest AI Talent Discovery and Development Platform</span>
           <span className="font-mono text-[13.6px] text-cyan animate-blink">▌</span>
         </div>
 
@@ -190,24 +190,23 @@ export default function Hero() {
 
         <div className="relative flex flex-col items-center">
           <h1 className="font-poster text-[128px] max-[860px]:text-[15vw] leading-[0.94] uppercase text-white text-center tracking-[0.64px]">
-            {`BUILD WHAT'S`}
+            IAIB IGNITE
           </h1>
           <h1
             className="font-poster text-[128px] max-[860px]:text-[15vw] leading-[0.94] uppercase text-center tracking-[0.64px] bg-clip-text text-transparent bg-gradient-text animate-gradient-shift"
             style={{ backgroundSize: '300% 100%' }}
           >
-            NEXT WITH AI
+            AI Buildathon
           </h1>
         </div>
 
         <p className="font-body text-[19.2px] leading-[1.6] text-text-dim">
-          Ship an idea from zero to demo in 48 hours. Team up with builders, get mentored by engineers from top AI labs, and compete for{' '}
-          <span className="font-bold text-text">₹10,00,000</span> in prizes.
+          IAIB stands to identify, nurture, and facilitate school students from classes 9th till 12th in learning about AI. They will get to learn AI, test their knowledge, and build solutions.
         </p>
 
         <div className="flex flex-col items-center gap-1.5">
-          <span className="font-mono text-[11.2px] tracking-[2px] uppercase text-text-dimmer">Registration Period</span>
-          <span className="font-display font-bold text-[18.4px] text-text">23 Sep – 15 Nov 2026</span>
+          <span className="font-mono text-[11.2px] tracking-[2px] uppercase text-text-dimmer">Starts</span>
+          <span className="font-display font-bold text-[18.4px] text-text">October 10th, 2026 | Bengaluru</span>
         </div>
 
         <div className="flex items-center gap-5 max-[700px]:flex-col">
@@ -215,13 +214,13 @@ export default function Hero() {
             href="#"
             className="bg-red flex items-center gap-2 pl-3.5 pr-3 py-3 text-white font-body font-semibold text-[13.3px] hover:bg-[#ff1a28] transition-colors"
           >
-            Register for Free
+            Register Now
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M6 14L14 6M14 6H7M14 6V13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
           <a href="#" className="px-5 py-3 text-white font-body font-semibold text-[13.3px] hover:opacity-80 transition-opacity">
-            Explore the Olympiad
+            Explore Buildathon
           </a>
         </div>
       </div>
