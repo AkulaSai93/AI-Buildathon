@@ -5,7 +5,6 @@ import BuiltToChallenge from '@/components/BuiltToChallenge';
 import HowItWorks from '@/components/HowItWorks';
 import MentorsGrid from '@/components/MentorsGrid';
 import Mentors from '@/components/Mentors';
-import Singularity from '@/components/Singularity';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 import SectionReveals from '@/components/SectionReveals';
@@ -21,7 +20,6 @@ export default function Home() {
         <HowItWorks />
         <MentorsGrid />
         <Mentors />
-        <Singularity />
         <FAQ />
       </main>
       <Footer />
