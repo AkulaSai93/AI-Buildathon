@@ -171,7 +171,7 @@ export default function Hero() {
 
       <div
         ref={contentRef}
-        className="relative z-10 flex flex-col items-center gap-[24px] w-[837px] max-w-full px-6 mx-auto text-center"
+        className="relative z-10 flex flex-col items-center gap-[24px] w-[837px] max-w-[calc(100%-48px)] mx-auto text-center"
         style={{ willChange: 'transform, opacity, filter' }}
       >
         <div className="bg-[rgba(6,229,229,0.06)] border border-[rgba(6,229,229,0.25)] flex items-center gap-[8px] min-h-[20px] px-[16px] py-[8px] max-[720px]:px-3 max-[720px]:py-2">
