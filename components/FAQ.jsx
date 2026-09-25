@@ -47,7 +47,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="relative bg-[#fafafa] px-6 max-[860px]:px-5 py-20 overflow-hidden">
+    <section className="relative bg-[#fafafa] px-6 max-[860px]:px-5 pt-10 pb-20 overflow-hidden">
       <div className="mx-auto flex flex-col items-center gap-[54px] max-w-[964px] relative z-10">
         {/* Heading and Subtitle */}
         <div className="flex flex-col gap-[20px] items-center text-center w-full">

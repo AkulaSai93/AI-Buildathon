@@ -4,7 +4,7 @@ const PHRASES = ['Build Solutions', '25 Lakh Prize Pool', 'Pitch to VC', '2 Cror
 
 export default function Highlights() {
   return (
-    <section className="relative bg-[#fafafa] py-[80px] max-[860px]:py-12 overflow-hidden">
+    <section className="relative bg-[#fafafa] pt-[80px] pb-[40px] max-[860px]:pt-12 max-[860px]:pb-6 overflow-hidden">
       <div className="flex flex-col gap-[24px] items-center">
         <div className="flex w-fit animate-headline-marquee">
           {/* Two runs is enough here: one run is far wider than any viewport,
