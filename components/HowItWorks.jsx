@@ -3,10 +3,9 @@
 import { useEffect, useRef } from 'react';
 
 const STEPS = [
-  { image: '/assets/journey-cards/step-01-learn.webp', alt: '01 — Learn: 30 Days of Learning' },
-  { image: '/assets/journey-cards/step-02-screen.webp', alt: '02 — Screen: Test + Build' },
-  { image: '/assets/journey-cards/step-03-selected.webp', alt: '03 — Selected: 300 Students Move Forward' },
-  { image: '/assets/journey-cards/step-04-hackathon.webp', alt: '04 — Hackathon: Build Together. Create Something Real.' },
+  { image: '/assets/journey-cards/step-01-learn.webp', alt: '01 — Learning: 30 Days of Learning' },
+  { image: '/assets/journey-cards/step-02-screen.webp', alt: '02 — Screening: Test + Build' },
+  { image: '/assets/journey-cards/step-03-offline-buildathon.webp', alt: '03 — Offline Buildathon' },
 ];
 
 // Distance (in normalized scroll units) between each shard's foreground peak.
@@ -162,10 +161,10 @@ export default function HowItWorks() {
 
         <div ref={textRef} className="relative z-10 flex flex-col items-center gap-[16px] text-center pt-[64px] px-6">
           <h2 className="font-display text-[40px] max-[640px]:text-[28px] font-bold uppercase leading-none text-white">
-            How It Works
+            How Does It Work?
           </h2>
           <p className="text-[16px] max-[640px]:text-[14px] leading-normal text-[rgba(255,255,255,0.85)] max-w-[640px]">
-            From learning the fundamentals to building something real, follow a journey designed to turn your curiosity into action. Learn, prove your skills, get selected, and build with the best at IAIB.
+            Just a quick 3-step process and you&rsquo;re in!
           </p>
         </div>
 
