@@ -4,46 +4,85 @@ import { useState } from 'react';
 
 const FAQ_ITEMS = [
   {
-    question: 'Who can participate in the AI Genius Olympiad?',
-    answer: 'The Olympiad is open to students studying in Class 11 and Class 12.',
-    isExpanded: true,
+    question: 'Who can participate?',
+    answer: 'Any student in classes 9 to 12, studying at a school in India.',
   },
   {
-    question: 'Is the Olympiad free to enter?',
-    answer: 'Yes, participation in the AI Genius Olympiad is completely free. There are no registration fees or entry costs.',
-    isExpanded: false,
+    question: 'Is there a registration fee?',
+    answer: 'No. Registration and participation are completely free.',
   },
   {
-    question: 'How does the competition work?',
-    answer: 'The competition consists of multiple rounds where students solve AI-related challenges and problems designed to test their creativity and problem-solving skills.',
-    isExpanded: false,
+    question: 'Do I need prior coding or AI experience?',
+    answer: 'No. The learning sessions start from the basics. All you need is curiosity about AI.',
   },
   {
-    question: 'What will I be tested on?',
-    answer: 'You will be tested on AI fundamentals, logical reasoning, coding skills, and your ability to apply AI concepts to real-world problems.',
-    isExpanded: false,
+    question: 'How are the learning sessions conducted?',
+    answer:
+      "Sessions are held live online, on weekend mornings. They won't clash with school, and you'll still have the rest of your weekend free.",
   },
   {
-    question: 'Is the exam online?',
-    answer: 'Yes, the examination is conducted entirely online, making it accessible to students from anywhere.',
-    isExpanded: false,
+    question: 'What does the screening round involve?',
+    answer:
+      'There are two steps. First, a 40-minute test on what you learned in the sessions. Second, a small project that you build from one of 50 prompts we share. Screening is done individually.',
   },
   {
-    question: 'What happens after Round 1?',
-    answer: 'Top performers from Round 1 advance to Round 2, where they face more challenging problems and compete for prizes and recognition.',
-    isExpanded: false,
+    question: 'How is the project evaluated?',
+    answer:
+      'Projects are judged on five criteria: originality, ethical use of AI, clarity, scalability, and potential for real-world impact.',
+  },
+  {
+    question: 'Can I participate with my friends as a team?',
+    answer:
+      'Screening is individual. At the offline buildathon, finalists compete in teams of four, and teams are formed on the day of the event.',
+  },
+  {
+    question: 'Will travel and accommodation be covered for finalists?',
+    answer:
+      'Yes. Travel and accommodation costs are reimbursed once receipts are verified, so keep all your bills. Travel and accommodation costs are reimbursed only for one child, one parent.',
+  },
+  {
+    question: 'How does the ₹2 crore scholarship work?',
+    answer:
+      'The scholarship is a pool of ₹2 crore for participants who take admission to the upGrad School of Technology campus programme in the cohort in the next year. The scholarship becomes null and void if the student takes admission somewhere else.',
+  },
+  {
+    question: 'Is parental consent required?',
+    answer:
+      'Yes. A parent or guardian must give consent at registration. We also recommend that a parent or guardian accompany the student throughout the offline buildathon.',
+  },
+  {
+    question: 'Who owns the solutions built during the buildathon?',
+    answer:
+      'The solutions belong to the teams that built them. Participants are free to keep developing their projects after the event.',
+  },
+  {
+    question: 'What do I need for the online sessions?',
+    answer: 'A laptop or computer with a stable internet connection.',
+  },
+  {
+    question: 'What if I miss a live session?',
+    answer: 'You can access recorded sessions which will be uploaded.',
+  },
+  {
+    question: 'What language are the sessions taught in?',
+    answer: 'English.',
+  },
+  {
+    question: "How will I know if I've been shortlisted?",
+    answer: 'Shortlisted participants will be informed by email and phone.',
   },
 ];
 
+const PREVIEW_COUNT = 6;
+
 export default function FAQ() {
-  const [items, setItems] = useState(FAQ_ITEMS);
+  const [openIndex, setOpenIndex] = useState(0);
+  const [showAll, setShowAll] = useState(false);
+
+  const visible = showAll ? FAQ_ITEMS : FAQ_ITEMS.slice(0, PREVIEW_COUNT);
 
   const toggleItem = (index) => {
-    setItems((prev) =>
-      prev.map((item, i) =>
-        i === index ? { ...item, isExpanded: !item.isExpanded } : { ...item, isExpanded: false }
-      )
-    );
+    setOpenIndex((current) => (current === index ? null : index));
   };
 
   return (
@@ -61,68 +100,76 @@ export default function FAQ() {
 
         {/* FAQ Items */}
         <div className="flex flex-col gap-[24px] w-full">
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className={`flex items-start px-[32px] py-[24px] w-full cursor-pointer transition-colors ${
-                item.isExpanded
-                  ? 'bg-red'
-                  : 'bg-white'
-              }`}
-              onClick={() => toggleItem(index)}
-            >
-              <div className="flex flex-1 items-start justify-between min-w-0">
-                <div className="flex flex-col gap-[12px] items-start leading-normal flex-1 pr-4">
-                  <p
-                    className={`font-display font-medium text-[24px] leading-normal ${
-                      item.isExpanded ? 'text-white' : 'text-[#0a0a0b]'
-                    }`}
-                  >
-                    {item.question}
-                  </p>
-                  {item.isExpanded && (
+          {visible.map((item, index) => {
+            const isExpanded = openIndex === index;
+            return (
+              <div
+                key={item.question}
+                className={`flex items-start px-[32px] py-[24px] w-full cursor-pointer transition-colors ${
+                  isExpanded ? 'bg-red' : 'bg-white'
+                }`}
+                onClick={() => toggleItem(index)}
+              >
+                <div className="flex flex-1 items-start justify-between min-w-0">
+                  <div className="flex flex-col gap-[12px] items-start leading-normal flex-1 pr-4">
                     <p
-                      className={`font-display font-normal text-[20px] leading-normal ${
-                        item.isExpanded ? 'text-[rgba(255,255,255,0.8)]' : ''
+                      className={`font-display font-medium text-[24px] max-[640px]:text-[19px] leading-normal ${
+                        isExpanded ? 'text-white' : 'text-[#0a0a0b]'
                       }`}
                     >
-                      {item.answer}
+                      {item.question}
                     </p>
-                  )}
-                </div>
+                    {isExpanded && (
+                      <p className="font-display font-normal text-[20px] max-[640px]:text-[16px] leading-normal text-[rgba(255,255,255,0.8)]">
+                        {item.answer}
+                      </p>
+                    )}
+                  </div>
 
-                {/* Chevron Icon */}
-                <div
-                  className={`flex-shrink-0 flex items-center justify-center w-[32px] h-[32px] border-[0.615px] rounded ${
-                    item.isExpanded
-                      ? 'border-white'
-                      : 'border-[#0a0a0b]'
-                  } transition-transform`}
-                  style={{
-                    transform: item.isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-                  }}
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={item.isExpanded ? 'text-white' : 'text-[#0a0a0b]'}
+                  {/* Chevron Icon */}
+                  <div
+                    className={`flex-shrink-0 flex items-center justify-center w-[32px] h-[32px] border-[0.615px] rounded ${
+                      isExpanded ? 'border-white' : 'border-[#0a0a0b]'
+                    } transition-transform`}
+                    style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
                   >
-                    <path
-                      d="M12.5 6L8 10.5L3.5 6"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={isExpanded ? 'text-white' : 'text-[#0a0a0b]'}
+                    >
+                      <path
+                        d="M12.5 6L8 10.5L3.5 6"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
+        {FAQ_ITEMS.length > PREVIEW_COUNT && (
+          <button
+            type="button"
+            onClick={() => {
+              // Collapsing past the open item would leave nothing highlighted,
+              // so pull the selection back into the remaining set.
+              if (showAll && openIndex !== null && openIndex >= PREVIEW_COUNT) setOpenIndex(null);
+              setShowAll((v) => !v);
+            }}
+            className="font-display font-semibold text-[16px] text-[#111] border border-[#111] rounded-full px-8 py-3 hover:bg-[#111] hover:text-white transition-colors"
+          >
+            {showAll ? 'Show less' : 'View all'}
+          </button>
+        )}
       </div>
     </section>
   );
