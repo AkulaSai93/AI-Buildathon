@@ -2,64 +2,86 @@
 
 import { useEffect, useRef } from 'react';
 
+const SRC = '/assets/videos/singularity.mp4';
+// Length of the crossfade at the loop point, in seconds.
+const FADE = 1.1;
+
 export default function Singularity() {
-  const sectionRef = useRef(null);
-  const imageRef = useRef(null);
+  const aRef = useRef(null);
+  const bRef = useRef(null);
   const rafRef = useRef(null);
-  const targetProgress = useRef(0);
-  const currentProgress = useRef(0);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const image = imageRef.current;
+    const a = aRef.current;
+    const b = bRef.current;
+    if (!a || !b) return;
 
-    const applyProgress = (progress) => {
-      // Slow drift/zoom as the section passes, so the singularity feels
-      // like it's pulling rather than sitting still.
-      const centered = progress - 0.5;
-      image.style.transform = `scale(${1.08 + progress * 0.06}) translateY(${centered * -40}px)`;
+    // The clip's first and last frames don't match, so a plain `loop` shows
+    // a visible jump. Instead two copies are stacked and the outgoing one is
+    // crossfaded into the incoming one, which hides the seam entirely.
+    let active = a;
+    let idle = b;
+    let fading = false;
+
+    const play = (v) => {
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
     };
 
-    const measureTarget = () => {
-      const rect = section.getBoundingClientRect();
-      const distance = rect.height + window.innerHeight;
-      const travelled = window.innerHeight - rect.top;
-      targetProgress.current = Math.min(Math.max(travelled / distance, 0), 1);
-    };
+    a.style.opacity = '1';
+    b.style.opacity = '0';
+    play(a);
 
     const tick = () => {
-      const diff = targetProgress.current - currentProgress.current;
-      if (Math.abs(diff) > 0.0006) {
-        currentProgress.current += diff * 0.08;
-      } else {
-        currentProgress.current = targetProgress.current;
+      const duration = active.duration;
+      if (duration && !Number.isNaN(duration)) {
+        const remaining = duration - active.currentTime;
+
+        if (!fading && remaining <= FADE) {
+          fading = true;
+          idle.currentTime = 0;
+          play(idle);
+        }
+
+        if (fading) {
+          const t = Math.min(1, Math.max(0, (FADE - remaining) / FADE));
+          idle.style.opacity = String(t);
+          active.style.opacity = String(1 - t);
+
+          if (remaining <= 0.02 || active.ended) {
+            // Swap roles and park the finished copy back at the start.
+            active.pause();
+            active.currentTime = 0;
+            active.style.opacity = '0';
+            idle.style.opacity = '1';
+            const prev = active;
+            active = idle;
+            idle = prev;
+            fading = false;
+          }
+        }
       }
-      applyProgress(currentProgress.current);
       rafRef.current = requestAnimationFrame(tick);
     };
 
-    const onScroll = () => measureTarget();
-
-    measureTarget();
-    currentProgress.current = targetProgress.current;
     rafRef.current = requestAnimationFrame(tick);
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', measureTarget);
+    // Autoplay can get interrupted during hydration; nudge it back.
+    const ensure = () => {
+      if (active.paused) play(active);
+    };
+    a.addEventListener('canplay', ensure);
+    b.addEventListener('canplay', ensure);
 
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', measureTarget);
+      a.removeEventListener('canplay', ensure);
+      b.removeEventListener('canplay', ensure);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative bg-black overflow-hidden min-h-[760px] max-[860px]:min-h-0 flex items-center max-[860px]:flex-col"
-    >
-      {/* Left: copy */}
+    <section className="relative bg-black overflow-hidden min-h-[760px] max-[860px]:min-h-0 flex items-center max-[860px]:flex-col">
       <div className="relative z-10 w-1/2 max-[860px]:w-full px-[80px] max-[860px]:px-5 py-[100px] max-[860px]:py-16 flex flex-col gap-6">
         <h2 className="font-display text-[63px] max-[860px]:text-[2.4rem] font-bold uppercase leading-none text-white">
           Every Line of Code <span className="block text-red">Bends Toward One Idea</span>
@@ -69,14 +91,22 @@ export default function Singularity() {
         </p>
       </div>
 
-      {/* Right: full-bleed singularity visual */}
-      <div className="absolute inset-y-0 right-0 w-1/2 max-[860px]:static max-[860px]:w-full max-[860px]:h-[420px] overflow-hidden">
-        <img
-          ref={imageRef}
-          src="/assets/singularity.webp"
-          alt=""
-          className="w-full h-full object-cover object-left"
-          style={{ willChange: 'transform' }}
+      <div className="absolute inset-y-0 right-0 w-1/2 max-[860px]:relative max-[860px]:inset-y-auto max-[860px]:w-full max-[860px]:h-[420px] overflow-hidden">
+        <video
+          ref={aRef}
+          className="absolute inset-0 w-full h-full object-cover"
+          src={SRC}
+          muted
+          playsInline
+          preload="auto"
+        />
+        <video
+          ref={bRef}
+          className="absolute inset-0 w-full h-full object-cover"
+          src={SRC}
+          muted
+          playsInline
+          preload="auto"
         />
         {/* Feather the inner edge so the visual melts into the copy side
             instead of cutting on a hard vertical seam. */}
