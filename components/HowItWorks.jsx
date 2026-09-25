@@ -196,6 +196,12 @@ export default function HowItWorks() {
             ))}
           </div>
         </div>
+
+        {/* Feather the video into the black sections above and below, so the
+            section boundaries don't read as hard horizontal seams. Sits above
+            the shards so the fade covers everything in the frame. */}
+        <div className="absolute inset-x-0 top-0 h-[200px] bg-gradient-to-b from-black to-transparent pointer-events-none z-20" />
+        <div className="absolute inset-x-0 bottom-0 h-[200px] bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
       </div>
     </section>
   );
