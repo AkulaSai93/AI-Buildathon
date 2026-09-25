@@ -1,10 +1,10 @@
 'use client';
 
-const imgImage2256 = '/assets/footer-logo.png';
+const imgLockup = '/assets/footer-lockup.png';
 const imgIaib = '/assets/iaib-wordmark.svg';
 
 export default function Footer() {
-  const navLinks = ['Home', 'About IAIB', 'How It Works', 'Prizes', 'Mentors', 'Jury', 'FAQ'];
+  const navLinks = ['Home', 'Why IAIB?', 'How does it work?', 'Mentors', 'Jury', 'FAQ'];
 
   return (
     <footer className="relative bg-[#fcfcfa]">
@@ -22,12 +22,12 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Logo Image - Top Right */}
-        <div className="absolute right-[30px] top-[20px] w-[340px] h-[130px]">
+        {/* upGrad x IAIB lockup - Top Right */}
+        <div className="absolute right-[80px] top-[54px] w-[334px] h-[63px] max-[860px]:right-5 max-[860px]:w-[240px] max-[860px]:h-[45px]">
           <img
-            alt="IAIB Logo"
+            alt="upGrad School of Technology x IAIB"
             className="w-full h-full object-contain"
-            src={imgImage2256}
+            src={imgLockup}
           />
         </div>
 
