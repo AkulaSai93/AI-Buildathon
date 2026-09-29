@@ -5,10 +5,27 @@ import { useEffect, useRef } from 'react';
 const FRAME_COUNT = 60;
 const frameSrc = (i) => `/assets/hero-frames/frame_${String(i).padStart(3, '0')}.jpg`;
 
+// Three states share one pinned viewport. The windows overlap so each frame
+// starts arriving while the previous is still leaving — that read as one
+// camera move rather than three stacked sections.
+const HERO_OUT = [0.28, 0.4];
+const GOK_IN = [0.3, 0.44];
+const GOK_OUT = [0.6, 0.72];
+const UNI_IN = [0.62, 0.76];
+// The frame sequence finishes inside frame 01 so the hero has completed its
+// own animation by the time it hands off.
+const SEQUENCE_END = 0.38;
+
+const clamp01 = (v) => Math.min(1, Math.max(0, v));
+const phase = (p, [start, end]) => clamp01((p - start) / (end - start));
+const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
 export default function Hero() {
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
   const contentRef = useRef(null);
+  const gokRef = useRef(null);
+  const uniRef = useRef(null);
   const rafRef = useRef(null);
   const targetProgress = useRef(0);
   const currentProgress = useRef(0);
@@ -18,6 +35,8 @@ export default function Hero() {
     const section = sectionRef.current;
     const canvas = canvasRef.current;
     const content = contentRef.current;
+    const gok = gokRef.current;
+    const uni = uniRef.current;
     const ctx = canvas.getContext('2d');
 
     let width = 0;
@@ -106,19 +125,36 @@ export default function Hero() {
       }
     };
 
-    // Background parallax removed in favor of the frame sequence itself
-    // carrying the motion; content still fades/lifts/blurs away on scroll.
+    // One pinned viewport, three states. The shared frame-sequence backdrop
+    // stays put while the foreground blocks hand off to each other.
     const applyProgress = (progress) => {
       const frameIndex = Math.min(
         FRAME_COUNT - 1,
-        Math.max(0, Math.round(progress * (FRAME_COUNT - 1)))
+        Math.max(0, Math.round(clamp01(progress / SEQUENCE_END) * (FRAME_COUNT - 1)))
       );
       drawFrame(frameIndex);
 
-      const fade = Math.min(progress / 0.85, 1);
-      content.style.opacity = String(1 - fade);
-      content.style.transform = `translateY(${-fade * 90}px)`;
-      content.style.filter = `blur(${fade * 4}px)`;
+      // Frame 01 — existing hero, unchanged apart from how it leaves.
+      const heroOut = easeOut(phase(progress, HERO_OUT));
+      content.style.opacity = String(1 - heroOut);
+      content.style.transform = `translate3d(0, ${-heroOut * 90}px, 0) scale(${1 + heroOut * 0.06})`;
+      content.style.filter = `blur(${heroOut * 4}px)`;
+      content.style.pointerEvents = heroOut > 0.5 ? 'none' : 'auto';
+
+      // Frames 02 and 03 — each rises in from slightly back and below, then
+      // lifts away as the next takes over.
+      const settle = (el, inWindow, outWindow) => {
+        if (!el) return;
+        const enter = easeOut(phase(progress, inWindow));
+        const exit = outWindow ? easeOut(phase(progress, outWindow)) : 0;
+        const y = 48 * (1 - enter) - 60 * exit;
+        const scale = 0.94 + enter * 0.06 + exit * 0.05;
+        el.style.opacity = String(clamp01(enter - exit));
+        el.style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
+      };
+
+      settle(gok, GOK_IN, GOK_OUT);
+      settle(uni, UNI_IN, null);
     };
 
     const measureTarget = () => {
@@ -162,7 +198,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" ref={sectionRef} className="relative h-[350vh] max-[860px]:h-auto bg-[#010101]">
+    <section id="home" ref={sectionRef} className="relative h-[600vh] max-[860px]:h-auto bg-[#010101]">
       <div className="sticky top-0 h-screen max-[860px]:h-auto max-[860px]:pb-16 overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0">
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
@@ -222,6 +258,52 @@ export default function Hero() {
           >
             Explore Buildathon
           </a>
+        </div>
+      </div>
+
+      {/* Frame 02 — Supported by Government of Karnataka */}
+      <div
+        ref={gokRef}
+        className="absolute inset-0 z-10 flex items-center justify-center px-6 opacity-0 pointer-events-none"
+        style={{ willChange: 'transform, opacity' }}
+      >
+        <div className="flex flex-col gap-[24px] items-center w-[424.6px] max-w-full text-center">
+          <p className="font-display font-normal text-[24px] max-[640px]:text-[18px] leading-normal uppercase text-text w-full">
+            Support By
+          </p>
+          <div className="flex flex-col gap-[28.6px] items-center w-full">
+            <img
+              src="/assets/partners-frames/gok.png"
+              alt="Government of Karnataka"
+              className="w-[200px] h-[200px] max-[640px]:w-[150px] max-[640px]:h-[150px] object-cover"
+            />
+            <p className="font-display font-bold text-[30.8px] max-[640px]:text-[22px] leading-normal text-text w-full">
+              Government of Karnataka
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Frame 03 — University partner */}
+      <div
+        ref={uniRef}
+        className="absolute inset-0 z-10 flex items-center justify-center px-6 opacity-0 pointer-events-none"
+        style={{ willChange: 'transform, opacity' }}
+      >
+        <div className="flex flex-col gap-[24px] items-center w-[424.6px] max-w-full text-center">
+          <p className="font-display font-normal text-[24px] max-[640px]:text-[18px] leading-normal uppercase text-text w-full">
+            In partnership with
+          </p>
+          <div className="flex flex-col gap-[28.6px] items-center w-full">
+            <img
+              src="/assets/partners-frames/ssahe.png"
+              alt="Sri Siddhartha Academy of Higher Education"
+              className="w-[200px] h-[200px] max-[640px]:w-[150px] max-[640px]:h-[150px] object-cover"
+            />
+            <p className="font-display font-bold text-[30.8px] max-[640px]:text-[22px] leading-normal uppercase text-text w-full">
+              Sri Siddhartha Academy of Higher Education
+            </p>
+          </div>
         </div>
       </div>
       </div>
