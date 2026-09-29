@@ -136,7 +136,7 @@ export default function Footer() {
               color: '#000', margin: 0, whiteSpace: 'nowrap',
             }}
           >
-            IGNITE AI BUILDATHON
+            IGNITE <span style={{ color: '#e8000d' }}>AI</span> BUILDATHON
           </motion.p>
         </div>
 
