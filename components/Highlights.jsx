@@ -180,11 +180,14 @@ export default function Highlights() {
           className="absolute inset-0 z-10 flex items-center justify-center px-6 pointer-events-none"
           style={{ willChange: 'transform, opacity', transformStyle: 'preserve-3d' }}
         >
-          <div className="flex max-[860px]:flex-col items-center justify-center gap-[70px] max-[1280px]:gap-10 max-[860px]:gap-3">
+          {/* Sized so all four statements fit one unclipped row at 1512px —
+              at 40px/70px the row measured 1641px and was cut off at both
+              edges. */}
+          <div className="flex max-[860px]:flex-col items-center justify-center gap-[36px] max-[1280px]:gap-6 max-[860px]:gap-3">
             {CARDS.map((card) => (
               <p
                 key={card.title}
-                className="font-body font-semibold uppercase whitespace-nowrap text-red leading-none text-[40px] max-[1280px]:text-[30px] max-[860px]:text-[24px]"
+                className="font-body font-semibold uppercase whitespace-nowrap text-red leading-none text-[32px] max-[1280px]:text-[24px] max-[1024px]:text-[20px] max-[860px]:text-[24px]"
               >
                 {card.title}
               </p>
