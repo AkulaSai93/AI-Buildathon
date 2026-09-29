@@ -172,26 +172,30 @@ export default function Highlights() {
           *Terms and conditions apply
         </p>
 
-        {/* Headline layer — above the cards, and the thing the camera moves
-            through. pointer-events-none so it never blocks the cards once it
-            has scaled past the viewer. */}
+        {/* Opening plate — a full-bleed red panel that the camera pushes
+            through. It's the layer above the cards, so at rest it's all the
+            viewer sees; as it scales past and clears, the cards behind are
+            revealed. pointer-events-none so it never blocks them afterwards. */}
         <div
           ref={textRef}
-          className="absolute inset-0 z-10 flex items-center justify-center px-6 pointer-events-none"
+          className="absolute inset-0 z-10 bg-red flex items-center pointer-events-none"
           style={{ willChange: 'transform, opacity', transformStyle: 'preserve-3d' }}
         >
-          {/* Sized so all four statements fit one unclipped row at 1512px —
-              at 40px/70px the row measured 1641px and was cut off at both
-              edges. */}
-          <div className="flex max-[860px]:flex-col items-center justify-center gap-[36px] max-[1280px]:gap-6 max-[860px]:gap-3">
-            {CARDS.map((card) => (
-              <p
-                key={card.title}
-                className="font-body font-semibold uppercase whitespace-nowrap text-red leading-none text-[32px] max-[1280px]:text-[24px] max-[1024px]:text-[20px] max-[860px]:text-[24px]"
-              >
-                {card.title}
-              </p>
-            ))}
+          <div className="w-full max-w-[1352px] mx-auto px-[80px] max-[1100px]:px-10 max-[860px]:px-5 flex items-center gap-[64px] max-[1100px]:gap-10 max-[860px]:flex-col max-[860px]:items-start max-[860px]:gap-5">
+            {/* Fixed column so the rule lands at ~42% of the frame and the
+                copy runs out to ~89%, matching the design's proportions
+                rather than hugging the heading text. */}
+            <h2 className="w-[420px] max-[1280px]:w-[340px] max-[860px]:w-auto shrink-0 font-body font-semibold uppercase text-white leading-[1.15] text-[56px] max-[1280px]:text-[44px] max-[860px]:text-[32px]">
+              Turn Ideas
+              <br />
+              Into Impact
+            </h2>
+
+            <div className="w-px h-[200px] max-[1280px]:h-[160px] bg-white/45 shrink-0 max-[860px]:hidden" />
+
+            <p className="font-body text-[18px] max-[1280px]:text-[16px] max-[860px]:text-[14px] leading-[1.5] text-white/90 max-w-[640px]">
+              Take a real problem, develop a meaningful solution, and turn your idea into something that can go further.
+            </p>
           </div>
         </div>
       </div>
