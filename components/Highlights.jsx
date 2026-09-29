@@ -62,17 +62,17 @@ export default function Highlights() {
     }
 
     const applyProgress = (p) => {
-      // 0.20 -> 0.50: the camera pushes through the headline. It scales past
-      // the viewer and lifts away rather than dissolving in place; the fade
-      // only runs at the very end of that travel so it never reads as a
-      // cross-fade between two layouts.
-      const travel = easeOut(phase(p, 0.2, 0.5));
+      // 0.20 -> 0.50: the panel settles back into depth rather than expanding
+      // past the viewer, so the cards read as coming forward out of the space
+      // it leaves. The fade only runs at the tail of that travel so it never
+      // reads as a cross-fade between two layouts.
+      const travel = easeOut(phase(p, 0.16, 0.58));
       if (text) {
-        const scale = 1 + travel * 2.6;
-        const lift = -travel * 300;
-        const z = travel * 620;
+        const scale = 1 - travel * 0.38;
+        const lift = -travel * 60;
+        const z = -travel * 520;
         text.style.transform = `translate3d(0, ${lift}px, ${z}px) scale(${scale})`;
-        text.style.opacity = String(1 - clamp01((travel - 0.72) / 0.28));
+        text.style.opacity = String(1 - clamp01((travel - 0.6) / 0.4));
       }
 
       cardRefs.current.forEach((el, i) => {
@@ -80,9 +80,10 @@ export default function Highlights() {
         const card = CARDS[i];
         // Staggered, overlapping windows keep it reading as one continuous
         // movement instead of four separate entrances.
-        const stagger = i * 0.045;
-        const t = easeOut(phase(p, 0.35 + stagger, 0.88 + stagger * 0.4));
-        const appear = phase(p, 0.35 + stagger, 0.58 + stagger);
+        const stagger = i * 0.035;
+        const t = easeOut(phase(p, 0.3 + stagger, 0.92 + stagger * 0.3));
+        // Eased rather than linear so cards don't pop in at the window edge.
+        const appear = easeOut(phase(p, 0.3 + stagger, 0.66 + stagger));
 
         const scale = 0.84 + t * 0.16;
         const x = card.from.x * (1 - t);
@@ -106,7 +107,9 @@ export default function Highlights() {
     const tick = () => {
       const diff = targetProgress.current - currentProgress.current;
       if (Math.abs(diff) > 0.0004) {
-        currentProgress.current += diff * 0.1;
+        // Gentler chase than the other sections: this one moves a full-bleed
+        // panel, so a snappier factor reads as a jolt.
+        currentProgress.current += diff * 0.07;
       } else {
         currentProgress.current = targetProgress.current;
       }
