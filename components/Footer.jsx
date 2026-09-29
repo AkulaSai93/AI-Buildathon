@@ -68,7 +68,7 @@ export default function Footer() {
 
   return (
     <footer style={{
-      position: 'relative', minHeight: '60vh', background: '#fff',
+      position: 'relative', minHeight: '100vh', background: '#fff',
       overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
     }}>
 
