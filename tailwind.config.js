@@ -55,10 +55,6 @@ module.exports = {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-50%)' },
         },
-        'headline-marquee': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-50%)' },
-        },
       },
       animation: {
         blink: 'blink 1s step-end infinite',
@@ -66,7 +62,6 @@ module.exports = {
         'partners-scroll': 'partners-scroll 26s linear infinite',
         'mentors-scroll': 'mentors-scroll 30s linear infinite',
         'mentors-grid-scroll': 'mentors-grid-scroll 40s linear infinite',
-        'headline-marquee': 'headline-marquee 40s linear infinite',
       },
       spacing: {
         'header-h': '84px',
